@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "tutorial",
+  "pattern": [
+    " o ",
+    " o ",
+    " i "
+  ],
+  "key": {
+    "o": {
+      "tag": "forge:obsidian"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "dsbonfire:coiled_sword"
+  }
+}

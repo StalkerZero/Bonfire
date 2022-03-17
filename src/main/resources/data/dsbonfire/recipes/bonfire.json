@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "tutorial",
+  "pattern": [
+    "   ",
+    " s ",
+    " c "
+  ],
+  "key": {
+    "s": {
+      "item": "dsbonfire:my_sword"
+    },
+    "c": {
+      "item": "minecraft:campfire"
+    }
+  },
+  "result": {
+    "item": "dsbonfire:bonfire"
+  }
+}
