@@ -7,7 +7,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.PotionItem;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -25,7 +24,6 @@ import javax.annotation.Nullable;
 import java.util.*;
 
 import static com.student.setup.Registration.Estus_Flask;
-import static net.minecraft.world.item.Items.POTION;
 
 public class Bonfire extends CampfireBlock {
     private static int counter = 0;
@@ -71,7 +69,7 @@ public class Bonfire extends CampfireBlock {
             for (;flasks>0;flasks-=8){
                 inv.add(
                         PotionUtils.setPotion(
-                                new ItemStack(Registration.Estus.get(), 8),
+                                new ItemStack(Registration.Estus.get(), flasks>8 ? 8:flasks),
                                 Potions.STRONG_HEALING
                         )
                 );

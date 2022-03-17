@@ -2,7 +2,6 @@ package com.student.items;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.Registry;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -23,18 +22,18 @@ public class Estus extends PotionItem {
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack p_42984_, Level p_42985_, LivingEntity p_42986_) {
-        Player player = p_42986_ instanceof Player ? (Player)p_42986_ : null;
+    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity livingEntity) {
+        Player player = livingEntity instanceof Player ? (Player)livingEntity : null;
         if (player instanceof ServerPlayer) {
-            CriteriaTriggers.CONSUME_ITEM.trigger((ServerPlayer)player, p_42984_);
+            CriteriaTriggers.CONSUME_ITEM.trigger((ServerPlayer)player, stack);
         }
 
-        if (!p_42985_.isClientSide) {
-            for(MobEffectInstance mobeffectinstance : PotionUtils.getMobEffects(p_42984_)) {
+        if (!level.isClientSide) {
+            for(MobEffectInstance mobeffectinstance : PotionUtils.getMobEffects(stack)) {
                 if (mobeffectinstance.getEffect().isInstantenous()) {
-                    mobeffectinstance.getEffect().applyInstantenousEffect(player, player, p_42986_, mobeffectinstance.getAmplifier(), 1.0D);
+                    mobeffectinstance.getEffect().applyInstantenousEffect(player, player, livingEntity, mobeffectinstance.getAmplifier(), 1.0D);
                 } else {
-                    p_42986_.addEffect(new MobEffectInstance(mobeffectinstance));
+                    livingEntity.addEffect(new MobEffectInstance(mobeffectinstance));
                 }
             }
         }
@@ -42,12 +41,12 @@ public class Estus extends PotionItem {
         if (player != null) {
             player.awardStat(Stats.ITEM_USED.get(this));
             if (!player.getAbilities().instabuild) {
-                p_42984_.shrink(1);
+                stack.shrink(1);
             }
         }
 
         if (player == null || !player.getAbilities().instabuild) {
-            if (p_42984_.isEmpty()) {
+            if (stack.isEmpty()) {
                 return new ItemStack(Estus_Flask.get());
             }
 
@@ -56,8 +55,8 @@ public class Estus extends PotionItem {
             }
         }
 
-        p_42985_.gameEvent(p_42986_, GameEvent.DRINKING_FINISH, p_42986_.eyeBlockPosition());
-        return p_42984_;
+        level.gameEvent(livingEntity, GameEvent.DRINKING_FINISH, livingEntity.eyeBlockPosition());
+        return stack;
     }
 
     @Override
