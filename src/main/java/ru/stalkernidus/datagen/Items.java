@@ -1,7 +1,7 @@
-package com.student.datagen;
+package ru.stalkernidus.datagen;
 
-import com.student.setup.Registration;
-import com.student.dsbonfire.TestMod;
+import ru.stalkernidus.setup.Registration;
+import ru.stalkernidus.BonfireMod;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -9,7 +9,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 public class Items extends ItemModelProvider {
 
     public Items(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator, TestMod.mod_Id, existingFileHelper);
+        super(generator, BonfireMod.MOD_ID, existingFileHelper);
     }
 
     @Override

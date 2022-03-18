@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "dsbonfire:bonfire"
+      "dsbonfire:estus_flask"
     ]
   },
   "criteria": {
-    "obsidian": {
+    "diamond": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:obsidian"
+              "minecraft:diamond"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "dsbonfire:bonfire"
+        "recipe": "dsbonfire:estus_flask"
       }
     }
   },
   "requirements": [
     [
-      "obsidian",
+      "diamond",
       "has_the_recipe"
     ]
   ]

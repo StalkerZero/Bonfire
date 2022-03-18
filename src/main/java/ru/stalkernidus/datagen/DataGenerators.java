@@ -1,4 +1,4 @@
-package com.student.datagen;
+package ru.stalkernidus.datagen;
 
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

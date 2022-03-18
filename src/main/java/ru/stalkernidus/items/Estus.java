@@ -1,4 +1,4 @@
-package com.student.items;
+package ru.stalkernidus.items;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.NonNullList;
@@ -13,7 +13,7 @@ import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 
-import static com.student.setup.Registration.Estus_Flask;
+import static ru.stalkernidus.setup.Registration.Estus_Flask;
 
 public class Estus extends PotionItem {
 

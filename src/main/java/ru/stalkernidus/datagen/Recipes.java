@@ -1,6 +1,6 @@
-package com.student.datagen;
+package ru.stalkernidus.datagen;
 
-import com.student.setup.Registration;
+import ru.stalkernidus.setup.Registration;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -11,7 +11,7 @@ import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
 
-import static com.student.setup.Items.Coiled_Sword;
+import static ru.stalkernidus.setup.Items.Coiled_Sword;
 
 public class Recipes extends RecipeProvider {
     public Recipes(DataGenerator p_125973_) {

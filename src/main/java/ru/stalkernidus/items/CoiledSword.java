@@ -1,4 +1,4 @@
-package com.student.items;
+package ru.stalkernidus.items;
 
 import net.minecraft.world.item.*;
 

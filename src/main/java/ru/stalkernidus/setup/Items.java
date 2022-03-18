@@ -1,7 +1,7 @@
-package com.student.setup;
+package ru.stalkernidus.setup;
 
-import com.student.items.Estus;
-import com.student.items.CoiledSword;
+import ru.stalkernidus.items.Estus;
+import ru.stalkernidus.items.CoiledSword;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BottleItem;

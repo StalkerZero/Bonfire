@@ -1,6 +1,6 @@
-package com.student.items;
+package ru.stalkernidus.blocks;
 
-import com.student.setup.Registration;
+import ru.stalkernidus.setup.Registration;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -23,7 +23,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import javax.annotation.Nullable;
 import java.util.*;
 
-import static com.student.setup.Registration.Estus_Flask;
+import static ru.stalkernidus.setup.Registration.Estus_Flask;
 
 public class Bonfire extends CampfireBlock {
     private static int counter = 0;
@@ -38,14 +38,16 @@ public class Bonfire extends CampfireBlock {
 
     @Nullable
     @Override
-    public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
-        Long pos = blockPlaceContext.getClickedPos().asLong();
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        Player player = context.getPlayer();
+        Long pos = player!=null ? player.getOnPos().asLong() : context.getClickedPos().asLong();
+//        Level level = context.getLevel();
         if (!bonfires.containsKey(pos)) {
             counter++;
             bonfires.put(pos, "#" + counter);
-            last=BlockPos.of(pos);
+            last = BlockPos.of(pos);
         }
-        return super.getStateForPlacement(blockPlaceContext);
+        return super.getStateForPlacement(context);
     }
 
     @Override
