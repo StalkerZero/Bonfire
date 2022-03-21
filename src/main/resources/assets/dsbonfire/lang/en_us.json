@@ -3,5 +3,6 @@
   "item.dsbonfire.estus.effect.empty": "Useless estus",
   "item.dsbonfire.estus.effect.healing": "Estus",
   "item.dsbonfire.estus_flask": "Estus Flask",
-  "block.dsbonfire.bonfire": "Bonfire"
+  "block.dsbonfire.bonfire": "Bonfire",
+  "bonfire.edit": "Enter bonfire name"
 }

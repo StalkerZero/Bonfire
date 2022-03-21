@@ -1,6 +1,5 @@
-package ru.stalkernidus;
+package ru.stalkernidus.setup;
 
-import ru.stalkernidus.setup.Registration;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -10,7 +9,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static ru.stalkernidus.BonfireMod.MOD_ID;
+import static ru.stalkernidus.setup.BonfireMod.MOD_ID;
 
 @Mod(MOD_ID)
 public class BonfireMod {

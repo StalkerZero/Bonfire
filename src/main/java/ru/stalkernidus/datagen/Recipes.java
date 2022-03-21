@@ -11,7 +11,7 @@ import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
 
-import static ru.stalkernidus.setup.Items.Coiled_Sword;
+import static ru.stalkernidus.setup.Registration.COILED_SWORD;
 
 public class Recipes extends RecipeProvider {
     public Recipes(DataGenerator p_125973_) {
@@ -20,7 +20,7 @@ public class Recipes extends RecipeProvider {
 
     @Override
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> p_176532_) {
-        ShapedRecipeBuilder.shaped(Registration.Coiled_Sword.get())
+        ShapedRecipeBuilder.shaped(COILED_SWORD.get())
                 .pattern(" o ")
                 .pattern(" o ")
                 .pattern(" i ")
@@ -29,11 +29,11 @@ public class Recipes extends RecipeProvider {
                 .group("tutorial")
                 .unlockedBy("iron_ingot", InventoryChangeTrigger.TriggerInstance.hasItems(Items.IRON_INGOT))
                 .save(p_176532_);
-        ShapedRecipeBuilder.shaped(Registration.Bonfire.get())
+        ShapedRecipeBuilder.shaped(Registration.BONFIRE.get())
                 .pattern("   ")
                 .pattern(" s ")
                 .pattern(" c ")
-                .define('s', Coiled_Sword)
+                .define('s', COILED_SWORD.get())
                 .define('c', Items.CAMPFIRE)
                 .group("tutorial")
                 .unlockedBy("campfire", InventoryChangeTrigger.TriggerInstance.hasItems(Items.CAMPFIRE))

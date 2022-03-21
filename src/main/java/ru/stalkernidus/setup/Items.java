@@ -1,3 +1,4 @@
+/*
 package ru.stalkernidus.setup;
 
 import ru.stalkernidus.items.Estus;
@@ -13,4 +14,5 @@ public class Items {
     public static final Item Estus_Flask = Registry.register(Registry.ITEM, new ResourceLocation("estus_empty"), new BottleItem((new Item.Properties()).tab(CreativeModeTab.TAB_BREWING)));
     public static final Item Estus = Registry.register(Registry.ITEM, new ResourceLocation("estus_filled"), new Estus());
 }
+*/
 

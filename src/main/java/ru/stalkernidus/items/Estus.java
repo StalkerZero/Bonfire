@@ -13,7 +13,7 @@ import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 
-import static ru.stalkernidus.setup.Registration.Estus_Flask;
+import static ru.stalkernidus.setup.Registration.ESTUS_FLASK;
 
 public class Estus extends PotionItem {
 
@@ -47,11 +47,11 @@ public class Estus extends PotionItem {
 
         if (player == null || !player.getAbilities().instabuild) {
             if (stack.isEmpty()) {
-                return new ItemStack(Estus_Flask.get());
+                return new ItemStack(ESTUS_FLASK.get());
             }
 
             if (player != null) {
-                player.getInventory().add(new ItemStack(Estus_Flask.get()));
+                player.getInventory().add(new ItemStack(ESTUS_FLASK.get()));
             }
         }
 
