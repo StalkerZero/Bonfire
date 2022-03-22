@@ -2,6 +2,8 @@ package ru.stalkernidus.blocks;
 
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import ru.stalkernidus.entities.BonfireEntity;
+import ru.stalkernidus.screens.BonfireUseScreen;
 import ru.stalkernidus.setup.Registration;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
@@ -11,7 +13,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
-import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.CampfireBlock;
 import net.minecraft.world.level.block.SoundType;
@@ -22,8 +23,7 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.phys.BlockHitResult;
 
-import javax.annotation.Nullable;
-
+import static com.mojang.realmsclient.util.task.LongRunningTask.setScreen;
 import static ru.stalkernidus.setup.Registration.ESTUS_FLASK;
 
 public class BonfireBlock extends CampfireBlock implements EntityBlock {
@@ -32,21 +32,6 @@ public class BonfireBlock extends CampfireBlock implements EntityBlock {
         super(true, 1,
                 BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.PODZOL).strength(2.0F).sound(SoundType.WOOD)
                         .lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).noOcclusion());
-    }
-
-    @Nullable
-    @Override
-    public BlockState getStateForPlacement(BlockPlaceContext context) {
-        /*Player player = context.getPlayer();
-        BlockPos pos = player!=null ? player.getOnPos() : context.getClickedPos();
-        BonfireEntity entity = (BonfireEntity) context.getLevel().getBlockEntity(context.getClickedPos());
-
-        if (entity!=null) {
-            entity.setTeleportPos(pos);
-            System.out.println("NAME: "+entity.getName());
-        }
-        else System.out.println("NULL: "+context.getClickedPos().toString());*/
-        return super.getStateForPlacement(context);
     }
 
     @Override
@@ -70,9 +55,10 @@ public class BonfireBlock extends CampfireBlock implements EntityBlock {
             }
         }
         if (player.getHealth()<player.getMaxHealth()) player.setHealth(player.getMaxHealth());
-        BlockPos last = BonfireEntity.getLast().getTpPos();
-        player.teleportTo(last.getX(), last.getY()+1, last.getZ());
-        System.out.println("BONFIRES: "+BonfireEntity.getBonfires().toString());
+//        BlockPos last = BonfireEntity.getLast().getTpPos();
+//        player.teleportTo(last.getX(), last.getY()+1, last.getZ());
+//        System.out.println("BONFIRES: "+BonfireEntity.getBonfires().toString());
+        setScreen(new BonfireUseScreen((BonfireEntity) level.getBlockEntity(pos), player));
         return InteractionResult.SUCCESS;
     }
 

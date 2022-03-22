@@ -1,6 +1,5 @@
 package ru.stalkernidus.items;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
@@ -10,8 +9,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
-import ru.stalkernidus.blocks.BonfireEntity;
-import ru.stalkernidus.blocks.BonfireNameScreen;
+import ru.stalkernidus.entities.BonfireEntity;
+import ru.stalkernidus.screens.BonfireNameScreen;
 
 import static com.mojang.realmsclient.util.task.LongRunningTask.setScreen;
 import static ru.stalkernidus.setup.Registration.BONFIRE;
@@ -27,7 +26,7 @@ public class BonfireItem extends BlockItem {
         BonfireEntity bonfire = (BonfireEntity) level.getBlockEntity(pos);
         if (!level.isClientSide && !flag && player != null && bonfire != null) {
             bonfire.setTpPos(player.getOnPos());
-            setScreen(new BonfireNameScreen(bonfire));
+            setScreen(new BonfireNameScreen(bonfire, player));
         }
         return flag;
     }

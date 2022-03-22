@@ -1,4 +1,4 @@
-package ru.stalkernidus.blocks;
+package ru.stalkernidus.screens;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.platform.Lighting;
@@ -11,7 +11,6 @@ import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import com.mojang.math.Matrix4f;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.font.TextFieldHelper;
 import net.minecraft.client.gui.screens.Screen;
@@ -25,12 +24,14 @@ import net.minecraft.client.resources.model.Material;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.game.ServerboundSignUpdatePacket;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.StandingSignBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import ru.stalkernidus.entities.BonfireEntity;
 
 @OnlyIn(Dist.CLIENT)
 public class BonfireNameScreen extends Screen {
@@ -40,19 +41,26 @@ public class BonfireNameScreen extends Screen {
     private WoodType woodType;
     private SignRenderer.SignModel signModel;
     private String name;
+    private final Player player;
 
-    public BonfireNameScreen(BonfireEntity bonfire) {
+    public BonfireNameScreen(BonfireEntity bonfire, Player player) {
         super(new TranslatableComponent("bonfire.edit"));
         this.name = bonfire.getName();
         this.bonfire = bonfire;
+        this.player = player;
     }
 
     @Override
     protected void init() {
         this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
-        this.addRenderableWidget(new Button(this.width / 2 - 100, this.height / 4 + 120, 200, 20, CommonComponents.GUI_DONE, (p_169820_) -> {
-            this.onDone();
-        }));
+        this.addRenderableWidget(new Button(
+                this.width / 2 - 100,
+                this.height / 4 + 120,
+                200,
+                20,
+                CommonComponents.GUI_DONE, (p_169820_) ->
+                    { this.onDone(); }
+        ));
         this.field = new TextFieldHelper(() -> this.name,
                 (p_169824_) -> {
                     this.name = p_169824_;
@@ -83,6 +91,9 @@ public class BonfireNameScreen extends Screen {
     }
 
     private void onDone() {
+        if (this.name.equals("")) this.bonfire.setName("Unnamed");
+        this.bonfire.setTpPos(player.getOnPos());
+        BonfireEntity.getBonfires().add(this.bonfire);
         this.bonfire.setChanged();
         this.minecraft.setScreen((Screen)null);
     }

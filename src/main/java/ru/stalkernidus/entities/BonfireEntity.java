@@ -1,4 +1,4 @@
-package ru.stalkernidus.blocks;
+package ru.stalkernidus.entities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -10,19 +10,15 @@ import java.util.*;
 import static ru.stalkernidus.setup.Registration.BONFIRE_ENTITY;
 
 public class BonfireEntity extends BlockEntity {
-    private String name;
+    private String name="";
     private BlockPos tpPos;
 
-    private static int counter = 0;
-    private static Set<BonfireEntity> bonfires = new HashSet<>();
+    private static List<BonfireEntity> bonfires = new ArrayList<>();
     private static BonfireEntity last;
 
     public BonfireEntity(BlockPos pos, BlockState state) {
         super(BONFIRE_ENTITY.get(), pos, state);
-        bonfires.add(this);
-        counter++;
-        this.name="#"+counter;
-        last=this;
+        last = this;
     }
 
     @Override
@@ -45,6 +41,16 @@ public class BonfireEntity extends BlockEntity {
         super.load(tag);
         this.name = tag.getString("name");
         this.tpPos = BlockPos.of(tag.getLong("tpPos"));
+        boolean check = true;
+        if (bonfires.size()!=0){
+            for (BonfireEntity e : bonfires){
+                if (e.getLongPos().equals(this.getLongPos())) {
+                    check=false;
+                    break;
+                }
+            }
+        }
+        if (check) bonfires.add(this);
     }
 
     @Override
@@ -67,6 +73,17 @@ public class BonfireEntity extends BlockEntity {
                 '}';
     }
 
+    public static BonfireEntity getBonfireWithPos(BlockPos pos){
+        for (BonfireEntity e : bonfires){
+            if (e.getLongPos().equals(pos.asLong())) return e;
+        }
+        return null;
+    }
+
+    public Long getLongPos(){
+        return this.getBlockPos().asLong();
+    }
+
     public BlockPos getTpPos() {
         return tpPos;
     }
@@ -83,19 +100,11 @@ public class BonfireEntity extends BlockEntity {
         this.name = name;
     }
 
-    public static int getCounter() {
-        return counter;
-    }
-
-    public static void setCounter(int counter) {
-        BonfireEntity.counter = counter;
-    }
-
-    public static Set<BonfireEntity> getBonfires() {
+    public static List<BonfireEntity> getBonfires() {
         return bonfires;
     }
 
-    public static void setBonfires(Set<BonfireEntity> bonfires) {
+    public static void setBonfires(List<BonfireEntity> bonfires) {
         BonfireEntity.bonfires = bonfires;
     }
 

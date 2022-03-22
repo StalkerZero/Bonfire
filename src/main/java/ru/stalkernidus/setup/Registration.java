@@ -2,6 +2,7 @@ package ru.stalkernidus.setup;
 
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import ru.stalkernidus.blocks.*;
+import ru.stalkernidus.entities.BonfireEntity;
 import ru.stalkernidus.items.*;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
