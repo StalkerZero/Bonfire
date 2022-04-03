@@ -91,9 +91,11 @@ public class BonfireNameScreen extends Screen {
     }
 
     private void onDone() {
-        if (this.name.equals("")) this.bonfire.setName("Unnamed");
+        if (this.name.equals(""))
+            this.bonfire.setName(new TranslatableComponent("bonfire.unnamed").getString());
         this.bonfire.setTpPos(player.getOnPos());
-        BonfireEntity.getBonfires().add(this.bonfire);
+        this.bonfire.setDimension(this.player.getLevel().dimension().location().getPath());
+        this.bonfire.getBonfires().add(this.bonfire);
         this.bonfire.setChanged();
         this.minecraft.setScreen((Screen)null);
     }

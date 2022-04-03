@@ -10,23 +10,22 @@ import java.util.*;
 import static ru.stalkernidus.setup.Registration.BONFIRE_ENTITY;
 
 public class BonfireEntity extends BlockEntity {
-    private String name="";
+    private String name = "";
+    private String dimension = "";
     private BlockPos tpPos;
 
-    private static List<BonfireEntity> bonfires = new ArrayList<>();
-    private static BonfireEntity last;
+    private static List<BonfireEntity> over = new ArrayList<>();
+    private static List<BonfireEntity> end = new ArrayList<>();
+    private static List<BonfireEntity> nether = new ArrayList<>();
 
     public BonfireEntity(BlockPos pos, BlockState state) {
         super(BONFIRE_ENTITY.get(), pos, state);
-        last = this;
     }
 
     @Override
     public void setRemoved() {
         super.setRemoved();
-        bonfires.remove(this);
-        if (bonfires.size()!=0) last = (BonfireEntity) bonfires.toArray()[bonfires.size()-1];
-        else last = null;
+        getBonfires().remove(this);
     }
 
     @Override
@@ -34,6 +33,7 @@ public class BonfireEntity extends BlockEntity {
         super.saveAdditional(tag);
         tag.putString("name", this.name);
         tag.putLong("tpPos", this.tpPos.asLong());
+        tag.putString("dimension", this.dimension);
     }
 
     @Override
@@ -41,11 +41,13 @@ public class BonfireEntity extends BlockEntity {
         super.load(tag);
         this.name = tag.getString("name");
         this.tpPos = BlockPos.of(tag.getLong("tpPos"));
+        this.dimension = tag.getString("dimension");
         boolean check = true;
-        if (bonfires.size()!=0){
-            for (BonfireEntity e : bonfires){
+        List<BonfireEntity> bonfires = this.getBonfires();
+        if (bonfires.size()!=0) {
+            for (BonfireEntity e : bonfires) {
                 if (e.getLongPos().equals(this.getLongPos())) {
-                    check=false;
+                    check = false;
                     break;
                 }
             }
@@ -67,21 +69,34 @@ public class BonfireEntity extends BlockEntity {
     public String toString() {
         return "BonfireEntity{" +
                 "name='" + name + '\'' +
+                ", dimension='" + dimension + '\'' +
+                ", tpPos=" + tpPos +
                 ", level=" + level +
                 ", worldPosition=" + worldPosition +
                 ", remove=" + remove +
                 '}';
     }
 
-    public static BonfireEntity getBonfireWithPos(BlockPos pos){
-        for (BonfireEntity e : bonfires){
-            if (e.getLongPos().equals(pos.asLong())) return e;
-        }
-        return null;
-    }
-
     public Long getLongPos(){
         return this.getBlockPos().asLong();
+    }
+
+    public List<BonfireEntity> getBonfires(){
+        switch (this.getDimension()) {
+            case "overworld" -> {
+                return getOver();
+            }
+            case "the_end" -> {
+                return getEnd();
+            }
+            case "the_nether" -> {
+                return getNether();
+            }
+            default -> {
+                System.out.println("ERROR: "+this.toString());
+                return new ArrayList<>();
+            }
+        }
     }
 
     public BlockPos getTpPos() {
@@ -100,19 +115,35 @@ public class BonfireEntity extends BlockEntity {
         this.name = name;
     }
 
-    public static List<BonfireEntity> getBonfires() {
-        return bonfires;
+    public static List<BonfireEntity> getOver() {
+        return over;
     }
 
-    public static void setBonfires(List<BonfireEntity> bonfires) {
-        BonfireEntity.bonfires = bonfires;
+    public static void setOver(List<BonfireEntity> over) {
+        BonfireEntity.over = over;
     }
 
-    public static BonfireEntity getLast() {
-        return last;
+    public static List<BonfireEntity> getEnd() {
+        return end;
     }
 
-    public static void setLast(BonfireEntity last) {
-        BonfireEntity.last = last;
+    public static void setEnd(List<BonfireEntity> end) {
+        BonfireEntity.end = end;
+    }
+
+    public static List<BonfireEntity> getNether() {
+        return nether;
+    }
+
+    public static void setNether(List<BonfireEntity> nether) {
+        BonfireEntity.nether = nether;
+    }
+
+    public String getDimension() {
+        return dimension;
+    }
+
+    public void setDimension(String dimension) {
+        this.dimension = dimension;
     }
 }

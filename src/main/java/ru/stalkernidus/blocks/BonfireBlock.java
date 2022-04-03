@@ -55,9 +55,6 @@ public class BonfireBlock extends CampfireBlock implements EntityBlock {
             }
         }
         if (player.getHealth()<player.getMaxHealth()) player.setHealth(player.getMaxHealth());
-//        BlockPos last = BonfireEntity.getLast().getTpPos();
-//        player.teleportTo(last.getX(), last.getY()+1, last.getZ());
-//        System.out.println("BONFIRES: "+BonfireEntity.getBonfires().toString());
         setScreen(new BonfireUseScreen((BonfireEntity) level.getBlockEntity(pos), player));
         return InteractionResult.SUCCESS;
     }

@@ -11,12 +11,12 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import ru.stalkernidus.entities.BonfireEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
 public class BonfireUseScreen extends Screen {
     private final BonfireEntity bonfire;
-    private int frame;
     private int page = 0;
     private final Player player;
 
@@ -29,7 +29,7 @@ public class BonfireUseScreen extends Screen {
     @Override
     protected void init() {
         this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
-        List<BonfireEntity> bonfires = BonfireEntity.getBonfires();
+        List<BonfireEntity> bonfires = this.bonfire.getBonfires();
         for (int i=0; i < bonfires.size(); i++) {
             if (bonfires.get(i).getLongPos().equals(this.bonfire.getLongPos())) {
                 bonfires.remove(i);
@@ -64,27 +64,27 @@ public class BonfireUseScreen extends Screen {
                     height,
                     50,
                     20,
-                    new TextComponent("Next->"),
+                    new TranslatableComponent("bonfire.use.next"),
                     (button) -> {
                         this.page++;
                         this.changePage();
                     }
             ));
-        }
 
-        this.addRenderableWidget(new Button(
-                width,
-                height,
-                50,
-                20,
-                new TextComponent("<-Prev"),
-                (button) -> {
-                    this.page--;
-                    this.changePage();
-                }
-        ));
-        ((Button)this.renderables.get(5)).visible = false;
-        height+=21;
+            this.addRenderableWidget(new Button(
+                    width,
+                    height,
+                    50,
+                    20,
+                    new TranslatableComponent("bonfire.use.prev"),
+                    (button) -> {
+                        this.page--;
+                        this.changePage();
+                    }
+            ));
+            ((Button)this.renderables.get(5)).visible = false;
+            height+=21;
+        }
 
         this.addRenderableWidget(new Button(
                 width,
@@ -97,7 +97,7 @@ public class BonfireUseScreen extends Screen {
     }
 
     private void changePage(){
-        List<BonfireEntity> bonfires = BonfireEntity.getBonfires();
+        List<BonfireEntity> bonfires = this.bonfire.getBonfires();
         int size = Math.min(4, bonfires.size()-4*this.page);
         int width = this.width / 2 - 100;
         int height = this.height / 4 + 8;
@@ -131,7 +131,6 @@ public class BonfireUseScreen extends Screen {
     }
 
     public void tick() {
-        ++this.frame;
         if (!this.bonfire.getType().isValid(this.bonfire.getBlockState())) {
             this.onClose();
         }
@@ -139,15 +138,13 @@ public class BonfireUseScreen extends Screen {
 
     private void teleport(BonfireEntity bonfire) {
         BlockPos pos = bonfire.getTpPos();
-        System.out.println("DIMENSION: "+player.getLevel().dimension().toString());
-        System.out.println("DIMENSION TYPE: "+player.getLevel().dimensionType().toString());
         this.player.teleportTo(pos.getX(), pos.getY()+1, pos.getZ());
         this.onClose();
     }
 
     @Override
     public void onClose() {
-        BonfireEntity.getBonfires().add(this.bonfire);
+        this.bonfire.getBonfires().add(this.bonfire);
         this.minecraft.setScreen((Screen)null);
     }
 

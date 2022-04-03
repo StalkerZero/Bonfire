@@ -4,5 +4,8 @@
   "item.dsbonfire.estus.effect.healing": "Estus",
   "item.dsbonfire.estus_flask": "Estus Flask",
   "block.dsbonfire.bonfire": "Bonfire",
-  "bonfire.edit": "Enter bonfire name"
+  "bonfire.edit": "Enter bonfire name",
+  "bonfire.unnamed": "Unnamed",
+  "bonfire.use.next": "Next->",
+  "bonfire.use.prev": "<-Prev"
 }

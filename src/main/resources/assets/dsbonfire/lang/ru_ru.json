@@ -4,5 +4,8 @@
   "item.dsbonfire.estus.effect.healing": "Эстус",
   "item.dsbonfire.estus_flask": "Пустая фляга",
   "block.dsbonfire.bonfire": "Костёр тёмных душ",
-  "bonfire.edit": "Введите название костра"
+  "bonfire.edit": "Введите название костра",
+  "bonfire.unnamed": "Безымянный",
+  "bonfire.use.next": "След->",
+  "bonfire.use.prev": "<-Пред"
 }
