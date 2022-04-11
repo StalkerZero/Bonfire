@@ -36,26 +36,28 @@ public class BonfireBlock extends CampfireBlock implements EntityBlock {
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        Inventory inv = player.getInventory();
-        short flasks = 0;
-        if (inv.contains(new ItemStack(ESTUS_FLASK.get()))){
-            for (ItemStack e : inv.items){
-                if (e.getItem()== ESTUS_FLASK.get()){
-                    flasks+=e.getCount();
-                    inv.removeItem(e);
+        if(!level.isClientSide) {
+            Inventory inv = player.getInventory();
+            short flasks = 0;
+            if (inv.contains(new ItemStack(ESTUS_FLASK.get()))) {
+                for (ItemStack e : inv.items) {
+                    if (e.getItem() == ESTUS_FLASK.get()) {
+                        flasks += e.getCount();
+                        inv.removeItem(e);
+                    }
+                }
+                for (; flasks > 0; flasks -= 8) {
+                    inv.add(
+                            PotionUtils.setPotion(
+                                    new ItemStack(Registration.ESTUS.get(), flasks > 8 ? 8 : flasks),
+                                    Potions.STRONG_HEALING
+                            )
+                    );
                 }
             }
-            for (;flasks>0;flasks-=8){
-                inv.add(
-                        PotionUtils.setPotion(
-                                new ItemStack(Registration.ESTUS.get(), flasks>8 ? 8:flasks),
-                                Potions.STRONG_HEALING
-                        )
-                );
-            }
+            if (player.getHealth() < player.getMaxHealth()) player.setHealth(player.getMaxHealth());
+            setScreen(new BonfireUseScreen((BonfireEntity) level.getBlockEntity(pos), player));
         }
-        if (player.getHealth()<player.getMaxHealth()) player.setHealth(player.getMaxHealth());
-        setScreen(new BonfireUseScreen((BonfireEntity) level.getBlockEntity(pos), player));
         return InteractionResult.SUCCESS;
     }
 

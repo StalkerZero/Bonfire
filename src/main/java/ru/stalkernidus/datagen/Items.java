@@ -20,6 +20,6 @@ public class Items extends ItemModelProvider {
 //                        new ResourceLocation(TestMod.mod_Id, "item/mini_sword"));
         getBuilder(Registration.COILED_SWORD.get().getRegistryName().getPath())
                 .parent(getExistingFile(mcLoc("item/handheld")))
-                .texture("layer0", "item/mini_sword");
+                .texture("layer0", "item/coiled_sword");
     }
 }

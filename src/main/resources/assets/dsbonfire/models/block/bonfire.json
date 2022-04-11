@@ -1,7 +1,7 @@
 {
-  "parent": "minecraft:block/template_campfire",
+  "parent": "dsbonfire:block/template_bonfire",
   "textures": {
-    "fire": "minecraft:block/campfire_fire",
-    "lit_log": "minecraft:block/campfire_log_lit"
+    "fire": "dsbonfire:block/bonfire_fire",
+    "lit_log": "dsbonfire:block/bonfire_log_lit"
   }
 }

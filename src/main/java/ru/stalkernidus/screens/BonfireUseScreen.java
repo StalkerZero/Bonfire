@@ -11,7 +11,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import ru.stalkernidus.entities.BonfireEntity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
@@ -24,18 +23,13 @@ public class BonfireUseScreen extends Screen {
         super(new TranslatableComponent("bonfire.use"));
         this.bonfire = bonfire;
         this.player = player;
+        bonfire.getCanUse().add(player.getUUID());
     }
 
     @Override
     protected void init() {
         this.minecraft.keyboardHandler.setSendRepeatsToGui(true);
-        List<BonfireEntity> bonfires = this.bonfire.getBonfires();
-        for (int i=0; i < bonfires.size(); i++) {
-            if (bonfires.get(i).getLongPos().equals(this.bonfire.getLongPos())) {
-                bonfires.remove(i);
-                break;
-            }
-        }
+        List<BonfireEntity> bonfires = this.bonfire.getBonfiresForUse(player);
         int width = this.width / 2 - 100;
         int height = this.height / 4 + 8;
         int size = Math.min(4, bonfires.size());
@@ -97,7 +91,7 @@ public class BonfireUseScreen extends Screen {
     }
 
     private void changePage(){
-        List<BonfireEntity> bonfires = this.bonfire.getBonfires();
+        List<BonfireEntity> bonfires = this.bonfire.getBonfiresForUse(player);
         int size = Math.min(4, bonfires.size()-4*this.page);
         int width = this.width / 2 - 100;
         int height = this.height / 4 + 8;
@@ -144,7 +138,6 @@ public class BonfireUseScreen extends Screen {
 
     @Override
     public void onClose() {
-        this.bonfire.getBonfires().add(this.bonfire);
         this.minecraft.setScreen((Screen)null);
     }
 

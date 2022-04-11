@@ -25,7 +25,7 @@ public class Registration {
 
     public static final RegistryObject<BonfireBlock> BONFIRE = BLOCKS.register("bonfire", BonfireBlock::new);
 
-    public static final RegistryObject<Item> BONFIRE_ITEM = ITEMS.register("bonfire", BonfireItem::new);
+    public static final RegistryObject<BonfireItem> BONFIRE_ITEM = ITEMS.register("bonfire", BonfireItem::new);
 
     public static final RegistryObject<BlockEntityType<BonfireEntity>> BONFIRE_ENTITY = BLOCK_ENTITY.register(
             "bonfire", () -> BlockEntityType.Builder.of(BonfireEntity::new, BONFIRE.get()).build(null));

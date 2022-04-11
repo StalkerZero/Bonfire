@@ -2,6 +2,7 @@ package ru.stalkernidus.entities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -13,6 +14,7 @@ public class BonfireEntity extends BlockEntity {
     private String name = "";
     private String dimension = "";
     private BlockPos tpPos;
+    private Set<UUID> canUse = new HashSet<>();
 
     private static List<BonfireEntity> over = new ArrayList<>();
     private static List<BonfireEntity> end = new ArrayList<>();
@@ -34,6 +36,7 @@ public class BonfireEntity extends BlockEntity {
         tag.putString("name", this.name);
         tag.putLong("tpPos", this.tpPos.asLong());
         tag.putString("dimension", this.dimension);
+        tag.putString("canUse", this.canUse.toString());
     }
 
     @Override
@@ -42,6 +45,12 @@ public class BonfireEntity extends BlockEntity {
         this.name = tag.getString("name");
         this.tpPos = BlockPos.of(tag.getLong("tpPos"));
         this.dimension = tag.getString("dimension");
+        String[] buff = tag.getString("canUse")
+                .substring(1, tag.getString("canUse").length()-1)
+                .split(", ");
+        for (String s : buff){
+            this.canUse.add(UUID.fromString(s));
+        }
         boolean check = true;
         List<BonfireEntity> bonfires = this.getBonfires();
         if (bonfires.size()!=0) {
@@ -97,6 +106,24 @@ public class BonfireEntity extends BlockEntity {
                 return new ArrayList<>();
             }
         }
+    }
+
+    public List<BonfireEntity> getBonfiresForUse(Player player){
+        List<BonfireEntity> list = new ArrayList<>();
+        for(BonfireEntity e : getBonfires()){
+            if(!e.getLongPos().equals(getLongPos()) &&
+                    e.getCanUse().contains(player.getUUID()))
+                        list.add(e);
+        }
+        return list;
+    }
+
+    public Set<UUID> getCanUse() {
+        return canUse;
+    }
+
+    public void setCanUse(Set<UUID> canUse) {
+        this.canUse = canUse;
     }
 
     public BlockPos getTpPos() {

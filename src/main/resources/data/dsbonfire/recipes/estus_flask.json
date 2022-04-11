@@ -1,8 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "tutorial",
   "pattern": [
-    "   ",
     "dad",
     " d "
   ],

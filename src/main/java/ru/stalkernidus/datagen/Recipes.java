@@ -21,18 +21,17 @@ public class Recipes extends RecipeProvider {
     @Override
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> p_176532_) {
         ShapedRecipeBuilder.shaped(COILED_SWORD.get())
-                .pattern(" o ")
-                .pattern(" o ")
-                .pattern(" i ")
+                .pattern("o")
+                .pattern("o")
+                .pattern("i")
                 .define('o', Tags.Items.OBSIDIAN)
                 .define('i', Items.IRON_INGOT)
                 .group("tutorial")
                 .unlockedBy("iron_ingot", InventoryChangeTrigger.TriggerInstance.hasItems(Items.IRON_INGOT))
                 .save(p_176532_);
         ShapedRecipeBuilder.shaped(Registration.BONFIRE.get())
-                .pattern("   ")
-                .pattern(" s ")
-                .pattern(" c ")
+                .pattern("s")
+                .pattern("c")
                 .define('s', COILED_SWORD.get())
                 .define('c', Items.CAMPFIRE)
                 .group("tutorial")

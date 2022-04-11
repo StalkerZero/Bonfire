@@ -33,6 +33,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import ru.stalkernidus.entities.BonfireEntity;
 
+import java.util.UUID;
+
 @OnlyIn(Dist.CLIENT)
 public class BonfireNameScreen extends Screen {
     private final BonfireEntity bonfire;
@@ -95,8 +97,11 @@ public class BonfireNameScreen extends Screen {
             this.bonfire.setName(new TranslatableComponent("bonfire.unnamed").getString());
         this.bonfire.setTpPos(player.getOnPos());
         this.bonfire.setDimension(this.player.getLevel().dimension().location().getPath());
-        this.bonfire.getBonfires().add(this.bonfire);
         this.bonfire.setChanged();
+        this.bonfire.getCanUse().add(player.getUUID());
+//        this.bonfire.getCanUse().add(UUID.randomUUID());
+//        System.out.println("\nToString: "+this.bonfire.getCanUse().toString()+"\n");
+        this.bonfire.getBonfires().add(this.bonfire);
         this.minecraft.setScreen((Screen)null);
     }
 
