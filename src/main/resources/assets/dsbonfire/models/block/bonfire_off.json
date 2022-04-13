@@ -1,5 +1,5 @@
 {
-  "parent": "block/block",
+  "credit": "Made by StalkerNidus",
   "display": {
     "head": {
       "rotation": [ 0, 0, 0 ],
@@ -8,67 +8,326 @@
     }
   },
   "textures": {
-    "particle": "block/bonfire_log",
-    "log": "block/bonfire_log"
+    "0": "dsbonfire:block/ash",
+    "1": "dsbonfire:item/coiled_sword",
+    "particle": "dsbonfire:block/ash"
   },
   "elements": [
     {
-      "from": [ 1, 0, 0 ],
-      "to": [ 5, 4, 16 ],
+      "name": "0",
+      "from": [0, 0, 0],
+      "to": [16, 1, 16],
       "faces": {
-        "north": { "uv": [  0, 4,  4, 8 ], "texture": "#log", "cullface": "north" },
-        "east":  { "uv": [  0, 1, 16, 5 ], "texture": "#log" },
-        "south": { "uv": [  0, 4,  4, 8 ], "texture": "#log", "cullface": "south" },
-        "west":  { "uv": [ 16, 0,  0, 4 ], "texture": "#log" },
-        "up":    { "uv": [  0, 0, 16, 4 ], "rotation": 90, "texture": "#log" },
-        "down":  { "uv": [  0, 0, 16, 4 ], "rotation": 90, "texture": "#log", "cullface": "down" }
+        "north": {"uv": [0, 0, 16, 1], "texture": "#0"},
+        "east": {"uv": [0, 0, 16, 1], "texture": "#0"},
+        "south": {"uv": [0, 15, 16, 16], "texture": "#0"},
+        "west": {"uv": [0, 15, 16, 16], "texture": "#0"},
+        "up": {"uv": [0, 0, 16, 16], "texture": "#0"},
+        "down": {"uv": [0, 0, 16, 16], "texture": "#0"}
       }
     },
     {
-      "from": [ 0, 3, 11 ],
-      "to": [ 16, 7, 15 ],
+      "name": "1",
+      "from": [3, 1, 3],
+      "to": [13, 2, 13],
       "faces": {
-        "north": { "uv": [ 16, 0,  0, 4 ], "texture": "#log" },
-        "east":  { "uv": [  0, 4,  4, 8 ], "texture": "#log", "cullface": "east" },
-        "south": { "uv": [  0, 0, 16, 4 ], "texture": "#log" },
-        "west":  { "uv": [  0, 4,  4, 8 ], "texture": "#log", "cullface": "west" },
-        "up":    { "uv": [  0, 0, 16, 4 ], "rotation": 180, "texture": "#log" },
-        "down":  { "uv": [  0, 0, 16, 4 ], "texture": "#log" }
+        "north": {"uv": [3, 3, 13, 4], "texture": "#0"},
+        "east": {"uv": [3, 12, 13, 13], "texture": "#0"},
+        "south": {"uv": [3, 12, 13, 13], "texture": "#0"},
+        "west": {"uv": [3, 3, 13, 4], "texture": "#0"},
+        "up": {"uv": [3, 3, 13, 13], "texture": "#0"},
+        "down": {"uv": [3, 3, 13, 13], "texture": "#0"}
       }
     },
     {
-      "from": [ 11, 0, 0 ],
-      "to": [ 15, 4, 16 ],
+      "name": "2",
+      "from": [4, 2, 4],
+      "to": [12, 3, 12],
       "faces": {
-        "north": { "uv": [  0, 4,  4, 8 ], "texture": "#log", "cullface": "north" },
-        "east":  { "uv": [  0, 0, 16, 4 ], "texture": "#log" },
-        "south": { "uv": [  0, 4,  4, 8 ], "texture": "#log", "cullface": "south" },
-        "west":  { "uv": [ 16, 1,  0, 5 ], "texture": "#log" },
-        "up":    { "uv": [  0, 0, 16, 4 ], "rotation": 90, "texture": "#log" },
-        "down":  { "uv": [  0, 0, 16, 4 ], "rotation": 90, "texture": "#log", "cullface": "down" }
+        "north": {"uv": [4, 4, 12, 5], "texture": "#0"},
+        "east": {"uv": [4, 4, 12, 5], "texture": "#0"},
+        "south": {"uv": [4, 11, 12, 12], "texture": "#0"},
+        "west": {"uv": [4, 11, 12, 12], "texture": "#0"},
+        "up": {"uv": [4, 4, 12, 12], "texture": "#0"},
+        "down": {"uv": [4, 4, 12, 12], "texture": "#0"}
       }
     },
     {
-      "from": [ 0, 3, 1 ],
-      "to": [ 16, 7, 5 ],
+      "name": "3",
+      "from": [5, 3, 5],
+      "to": [11, 4, 11],
       "faces": {
-        "north": { "uv": [  0, 0, 16, 4 ], "texture": "#log" },
-        "east":  { "uv": [  0, 4,  4, 8 ], "texture": "#log", "cullface": "east" },
-        "south": { "uv": [ 16, 0,  0, 4 ], "texture": "#log" },
-        "west":  { "uv": [  0, 4,  4, 8 ], "texture": "#log", "cullface": "west" },
-        "up":    { "uv": [  0, 0, 16, 4 ], "rotation": 180, "texture": "#log" },
-        "down":  { "uv": [  0, 0, 16, 4 ], "texture": "#log" }
+        "north": {"uv": [5, 5, 11, 6], "texture": "#0"},
+        "east": {"uv": [5, 5, 11, 6], "texture": "#0"},
+        "south": {"uv": [5, 10, 11, 11], "texture": "#0"},
+        "west": {"uv": [5, 10, 11, 11], "texture": "#0"},
+        "up": {"uv": [5, 5, 11, 11], "texture": "#0"},
+        "down": {"uv": [5, 5, 11, 11], "texture": "#0"}
       }
     },
     {
-      "from": [ 5, 0, 0 ],
-      "to": [ 11, 1, 16 ],
+      "name": "coiled_sword_0",
+      "from": [7, -2, 6],
+      "to": [8, 0, 8],
+      "rotation": {"angle": -22.5, "axis": "x", "origin": [0, 0, 0]},
       "faces": {
-        "north": {"uv": [  0, 15,  6, 16 ], "texture": "#log", "cullface": "north" },
-        "south": {"uv": [ 10, 15, 16, 16 ], "texture": "#log", "cullface": "south" },
-        "up":    {"uv": [  0,  8, 16, 14 ], "rotation": 90, "texture": "#log" },
-        "down":  {"uv": [  0,  8, 16, 14 ], "rotation": 90, "texture": "#log", "cullface": "down" }
+        "north": {"uv": [16, 0, 14, 1], "rotation": 270, "texture": "#1"},
+        "east": {"uv": [14, 0, 16, 2], "rotation": 90, "texture": "#1"},
+        "south": {"uv": [14, 1, 16, 2], "rotation": 90, "texture": "#1"},
+        "west": {"uv": [14, 2, 16, 0], "rotation": 90, "texture": "#1"},
+        "up": {"uv": [14, 0, 15, 2], "texture": "#1"},
+        "down": {"uv": [15, 0, 16, 2], "rotation": 180, "texture": "#1"}
       }
+    },
+    {
+      "name": "coiled_sword_1",
+      "from": [7, 0, 7],
+      "to": [8, 1, 10],
+      "rotation": {"angle": -22.5, "axis": "x", "origin": [0, 0, 0]},
+      "faces": {
+        "north": {"uv": [14, 1, 13, 2], "rotation": 270, "texture": "#1"},
+        "east": {"uv": [13, 1, 14, 4], "rotation": 90, "texture": "#1"},
+        "south": {"uv": [13, 3, 14, 4], "rotation": 90, "texture": "#1"},
+        "west": {"uv": [13, 4, 14, 1], "rotation": 90, "texture": "#1"},
+        "up": {"uv": [13, 1, 14, 4], "texture": "#1"},
+        "down": {"uv": [13, 1, 14, 4], "rotation": 180, "texture": "#1"}
+      }
+    },
+    {
+      "name": "coiled_sword_2",
+      "from": [7, 1, 8],
+      "to": [8, 2, 11],
+      "rotation": {"angle": -22.5, "axis": "x", "origin": [0, 0, 0]},
+      "faces": {
+        "north": {"uv": [13, 2, 12, 3], "rotation": 270, "texture": "#1"},
+        "east": {"uv": [12, 2, 13, 5], "rotation": 90, "texture": "#1"},
+        "south": {"uv": [12, 4, 13, 5], "rotation": 90, "texture": "#1"},
+        "west": {"uv": [12, 5, 13, 2], "rotation": 90, "texture": "#1"},
+        "up": {"uv": [12, 2, 13, 5], "texture": "#1"},
+        "down": {"uv": [12, 2, 13, 5], "rotation": 180, "texture": "#1"}
+      }
+    },
+    {
+      "name": "coiled_sword_3",
+      "from": [7, -1, 8],
+      "to": [8, 0, 9],
+      "rotation": {"angle": -22.5, "axis": "x", "origin": [0, 0, 0]},
+      "faces": {
+        "north": {"uv": [15, 2, 14, 3], "rotation": 270, "texture": "#1"},
+        "east": {"uv": [14, 2, 15, 3], "rotation": 90, "texture": "#1"},
+        "south": {"uv": [14, 2, 15, 3], "rotation": 90, "texture": "#1"},
+        "west": {"uv": [14, 3, 15, 2], "rotation": 90, "texture": "#1"},
+        "up": {"uv": [14, 2, 15, 3], "texture": "#1"},
+        "down": {"uv": [14, 2, 15, 3], "rotation": 180, "texture": "#1"}
+      }
+    },
+    {
+      "name": "coiled_sword_4",
+      "from": [7, 2, 9],
+      "to": [8, 3, 12],
+      "rotation": {"angle": -22.5, "axis": "x", "origin": [0, 0, 0]},
+      "faces": {
+        "north": {"uv": [12, 3, 11, 4], "rotation": 270, "texture": "#1"},
+        "east": {"uv": [11, 3, 12, 6], "rotation": 90, "texture": "#1"},
+        "south": {"uv": [11, 5, 12, 6], "rotation": 90, "texture": "#1"},
+        "west": {"uv": [11, 6, 12, 3], "rotation": 90, "texture": "#1"},
+        "up": {"uv": [11, 3, 12, 6], "texture": "#1"},
+        "down": {"uv": [11, 3, 12, 6], "rotation": 180, "texture": "#1"}
+      }
+    },
+    {
+      "name": "coiled_sword_5",
+      "from": [7, 3, 10],
+      "to": [8, 4, 13],
+      "rotation": {"angle": -22.5, "axis": "x", "origin": [0, 0, 0]},
+      "faces": {
+        "north": {"uv": [11, 4, 10, 5], "rotation": 270, "texture": "#1"},
+        "east": {"uv": [10, 4, 11, 7], "rotation": 90, "texture": "#1"},
+        "south": {"uv": [10, 6, 11, 7], "rotation": 90, "texture": "#1"},
+        "west": {"uv": [10, 7, 11, 4], "rotation": 90, "texture": "#1"},
+        "up": {"uv": [10, 4, 11, 7], "texture": "#1"},
+        "down": {"uv": [10, 4, 11, 7], "rotation": 180, "texture": "#1"}
+      }
+    },
+    {
+      "name": "coiled_sword_6",
+      "from": [7, 4, 11],
+      "to": [8, 5, 14],
+      "rotation": {"angle": -22.5, "axis": "x", "origin": [0, 0, 0]},
+      "faces": {
+        "north": {"uv": [10, 5, 9, 6], "rotation": 270, "texture": "#1"},
+        "east": {"uv": [9, 5, 10, 8], "rotation": 90, "texture": "#1"},
+        "south": {"uv": [9, 7, 10, 8], "rotation": 90, "texture": "#1"},
+        "west": {"uv": [9, 8, 10, 5], "rotation": 90, "texture": "#1"},
+        "up": {"uv": [9, 5, 10, 8], "texture": "#1"},
+        "down": {"uv": [9, 5, 10, 8], "rotation": 180, "texture": "#1"}
+      }
+    },
+    {
+      "name": "coiled_sword_7",
+      "from": [7, 5, 12],
+      "to": [8, 6, 15],
+      "rotation": {"angle": -22.5, "axis": "x", "origin": [0, 0, 0]},
+      "faces": {
+        "north": {"uv": [9, 6, 8, 7], "rotation": 270, "texture": "#1"},
+        "east": {"uv": [8, 6, 9, 9], "rotation": 90, "texture": "#1"},
+        "south": {"uv": [8, 8, 9, 9], "rotation": 90, "texture": "#1"},
+        "west": {"uv": [8, 9, 9, 6], "rotation": 90, "texture": "#1"},
+        "up": {"uv": [8, 6, 9, 9], "texture": "#1"},
+        "down": {"uv": [8, 6, 9, 9], "rotation": 180, "texture": "#1"}
+      }
+    },
+    {
+      "name": "coiled_sword_8",
+      "from": [7, 6, 13],
+      "to": [8, 7, 16],
+      "rotation": {"angle": -22.5, "axis": "x", "origin": [0, 0, 0]},
+      "faces": {
+        "north": {"uv": [8, 7, 7, 8], "rotation": 270, "texture": "#1"},
+        "east": {"uv": [7, 7, 8, 10], "rotation": 90, "texture": "#1"},
+        "south": {"uv": [7, 9, 8, 10], "rotation": 90, "texture": "#1"},
+        "west": {"uv": [7, 10, 8, 7], "rotation": 90, "texture": "#1"},
+        "up": {"uv": [7, 7, 8, 10], "texture": "#1"},
+        "down": {"uv": [7, 7, 8, 10], "rotation": 180, "texture": "#1"}
+      }
+    },
+    {
+      "name": "coiled_sword_9",
+      "from": [7, 7, 14],
+      "to": [8, 8, 17],
+      "rotation": {"angle": -22.5, "axis": "x", "origin": [0, 0, 0]},
+      "faces": {
+        "north": {"uv": [7, 8, 6, 9], "rotation": 270, "texture": "#1"},
+        "east": {"uv": [6, 8, 7, 11], "rotation": 90, "texture": "#1"},
+        "south": {"uv": [6, 10, 7, 11], "rotation": 90, "texture": "#1"},
+        "west": {"uv": [6, 11, 7, 8], "rotation": 90, "texture": "#1"},
+        "up": {"uv": [6, 8, 7, 11], "texture": "#1"},
+        "down": {"uv": [6, 8, 7, 11], "rotation": 180, "texture": "#1"}
+      }
+    },
+    {
+      "name": "coiled_sword_10",
+      "from": [7, 10, 15],
+      "to": [8, 12, 16],
+      "rotation": {"angle": -22.5, "axis": "x", "origin": [0, 0, 0]},
+      "faces": {
+        "north": {"uv": [4, 9, 2, 10], "rotation": 270, "texture": "#1"},
+        "east": {"uv": [2, 9, 4, 10], "rotation": 90, "texture": "#1"},
+        "south": {"uv": [2, 9, 4, 10], "rotation": 90, "texture": "#1"},
+        "west": {"uv": [2, 10, 4, 9], "rotation": 90, "texture": "#1"},
+        "up": {"uv": [2, 9, 3, 10], "texture": "#1"},
+        "down": {"uv": [3, 9, 4, 10], "rotation": 180, "texture": "#1"}
+      }
+    },
+    {
+      "name": "coiled_sword_11",
+      "from": [7, 8, 15],
+      "to": [8, 9, 19],
+      "rotation": {"angle": -22.5, "axis": "x", "origin": [0, 0, 0]},
+      "faces": {
+        "north": {"uv": [6, 9, 5, 10], "rotation": 270, "texture": "#1"},
+        "east": {"uv": [5, 9, 6, 13], "rotation": 90, "texture": "#1"},
+        "south": {"uv": [5, 12, 6, 13], "rotation": 90, "texture": "#1"},
+        "west": {"uv": [5, 13, 6, 9], "rotation": 90, "texture": "#1"},
+        "up": {"uv": [5, 9, 6, 13], "texture": "#1"},
+        "down": {"uv": [5, 9, 6, 13], "rotation": 180, "texture": "#1"}
+      }
+    },
+    {
+      "name": "coiled_sword_12",
+      "from": [7, 9, 16],
+      "to": [8, 11, 19],
+      "rotation": {"angle": -22.5, "axis": "x", "origin": [0, 0, 0]},
+      "faces": {
+        "north": {"uv": [5, 10, 3, 11], "rotation": 270, "texture": "#1"},
+        "east": {"uv": [3, 10, 5, 13], "rotation": 90, "texture": "#1"},
+        "south": {"uv": [3, 12, 5, 13], "rotation": 90, "texture": "#1"},
+        "west": {"uv": [3, 13, 5, 10], "rotation": 90, "texture": "#1"},
+        "up": {"uv": [3, 10, 4, 13], "texture": "#1"},
+        "down": {"uv": [4, 10, 5, 13], "rotation": 180, "texture": "#1"}
+      }
+    },
+    {
+      "name": "coiled_sword_13",
+      "from": [7, 11, 18],
+      "to": [8, 12, 21],
+      "rotation": {"angle": -22.5, "axis": "x", "origin": [0, 0, 0]},
+      "faces": {
+        "north": {"uv": [3, 12, 2, 13], "rotation": 270, "texture": "#1"},
+        "east": {"uv": [2, 12, 3, 15], "rotation": 90, "texture": "#1"},
+        "south": {"uv": [2, 14, 3, 15], "rotation": 90, "texture": "#1"},
+        "west": {"uv": [2, 15, 3, 12], "rotation": 90, "texture": "#1"},
+        "up": {"uv": [2, 12, 3, 15], "texture": "#1"},
+        "down": {"uv": [2, 12, 3, 15], "rotation": 180, "texture": "#1"}
+      }
+    },
+    {
+      "name": "coiled_sword_14",
+      "from": [7, 7, 18],
+      "to": [8, 8, 20],
+      "rotation": {"angle": -22.5, "axis": "x", "origin": [0, 0, 0]},
+      "faces": {
+        "north": {"uv": [7, 12, 6, 13], "rotation": 270, "texture": "#1"},
+        "east": {"uv": [6, 12, 7, 14], "rotation": 90, "texture": "#1"},
+        "south": {"uv": [6, 13, 7, 14], "rotation": 90, "texture": "#1"},
+        "west": {"uv": [6, 14, 7, 12], "rotation": 90, "texture": "#1"},
+        "up": {"uv": [6, 12, 7, 14], "texture": "#1"},
+        "down": {"uv": [6, 12, 7, 14], "rotation": 180, "texture": "#1"}
+      }
+    },
+    {
+      "name": "coiled_sword_15",
+      "from": [7, 12, 19],
+      "to": [8, 13, 22],
+      "rotation": {"angle": -22.5, "axis": "x", "origin": [0, 0, 0]},
+      "faces": {
+        "north": {"uv": [2, 13, 1, 14], "rotation": 270, "texture": "#1"},
+        "east": {"uv": [1, 13, 2, 16], "rotation": 90, "texture": "#1"},
+        "south": {"uv": [1, 15, 2, 16], "rotation": 90, "texture": "#1"},
+        "west": {"uv": [1, 16, 2, 13], "rotation": 90, "texture": "#1"},
+        "up": {"uv": [1, 13, 2, 16], "texture": "#1"},
+        "down": {"uv": [1, 13, 2, 16], "rotation": 180, "texture": "#1"}
+      }
+    },
+    {
+      "name": "coiled_sword_16",
+      "from": [7, 10, 19],
+      "to": [8, 11, 20],
+      "rotation": {"angle": -22.5, "axis": "x", "origin": [0, 0, 0]},
+      "faces": {
+        "north": {"uv": [4, 13, 3, 14], "rotation": 270, "texture": "#1"},
+        "east": {"uv": [3, 13, 4, 14], "rotation": 90, "texture": "#1"},
+        "south": {"uv": [3, 13, 4, 14], "rotation": 90, "texture": "#1"},
+        "west": {"uv": [3, 14, 4, 13], "rotation": 90, "texture": "#1"},
+        "up": {"uv": [3, 13, 4, 14], "texture": "#1"},
+        "down": {"uv": [3, 13, 4, 14], "rotation": 180, "texture": "#1"}
+      }
+    },
+    {
+      "name": "coiled_sword_17",
+      "from": [7, 13, 20],
+      "to": [8, 14, 22],
+      "rotation": {"angle": -22.5, "axis": "x", "origin": [0, 0, 0]},
+      "faces": {
+        "north": {"uv": [1, 14, 0, 15], "rotation": 270, "texture": "#1"},
+        "east": {"uv": [0, 14, 1, 16], "rotation": 90, "texture": "#1"},
+        "south": {"uv": [0, 15, 1, 16], "rotation": 90, "texture": "#1"},
+        "west": {"uv": [0, 16, 1, 14], "rotation": 90, "texture": "#1"},
+        "up": {"uv": [0, 14, 1, 16], "texture": "#1"},
+        "down": {"uv": [0, 14, 1, 16], "rotation": 180, "texture": "#1"}
+      }
+    }
+  ],
+  "groups": [
+    0,
+    1,
+    2,
+    3,
+    {
+      "name": "coiled_sword",
+      "origin": [8, 8, 8],
+      "color": 0,
+      "children": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
     }
   ]
 }
