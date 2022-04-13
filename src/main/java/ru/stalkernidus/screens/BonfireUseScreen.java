@@ -2,11 +2,13 @@ package ru.stalkernidus.screens;
 
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import ru.stalkernidus.entities.BonfireEntity;
@@ -32,30 +34,12 @@ public class BonfireUseScreen extends Screen {
         List<BonfireEntity> bonfires = this.bonfire.getBonfiresForUse(player);
         int width = this.width / 2 - 100;
         int height = this.height / 4 + 8;
-        int size = Math.min(4, bonfires.size());
+        int size = bonfires.size();
 
-        for (int i=0; i < size; i++){
-            BonfireEntity bonfire = bonfires.get(i);
-            BlockPos pos = bonfire.getBlockPos();
-            this.addRenderableWidget(new Button(
-                    width,
-                    height,
-                    200,
-                    20,
-                    new TextComponent(
-                            bonfire.getName()+
-                                    " (x="+pos.getX()+
-                                    "; y="+pos.getY()+
-                                    "; z="+pos.getZ()+")"),
-                    (button) -> { this.teleport(bonfire); }
-            ));
-            height+=21;
-        }
-
-        if (bonfires.size()>4){
+        if (size>4){
             this.addRenderableWidget(new Button(
                     width+150,
-                    height,
+                    height+84,
                     50,
                     20,
                     new TranslatableComponent("bonfire.use.next"),
@@ -67,7 +51,7 @@ public class BonfireUseScreen extends Screen {
 
             this.addRenderableWidget(new Button(
                     width,
-                    height,
+                    height+84,
                     50,
                     20,
                     new TranslatableComponent("bonfire.use.prev"),
@@ -76,52 +60,53 @@ public class BonfireUseScreen extends Screen {
                         this.changePage();
                     }
             ));
-            ((Button)this.renderables.get(5)).visible = false;
-            height+=21;
+            ((Button)this.renderables.get(1)).visible = false;
         }
 
         this.addRenderableWidget(new Button(
                 width,
-                height+5,
+                height+110,
                 200,
                 20,
                 CommonComponents.GUI_CANCEL,
                 (button) -> { this.onClose(); }
         ));
+
+        for (int i=0; i<size; i+=4) {
+            for(int j=0; j<4; j++) {
+                if (bonfires.size()-1<i+j) break;
+                BonfireEntity bonfire = bonfires.get(i+j);
+                BlockPos pos = bonfire.getBlockPos();
+                this.addRenderableWidget(new Button(
+                        width,
+                        height+j*21,
+                        200,
+                        20,
+                        new TextComponent(
+                                bonfire.getName() +
+                                        " (x=" + pos.getX() +
+                                        "; y=" + pos.getY() +
+                                        "; z=" + pos.getZ() + ")"),
+                        (button) -> {
+                            this.teleport(bonfire);
+                        }
+                ));
+                if(i>0) ((Button)this.renderables.get(3+i+j)).visible = false;
+            }
+        }
     }
 
     private void changePage(){
-        List<BonfireEntity> bonfires = this.bonfire.getBonfiresForUse(player);
-        int size = Math.min(4, bonfires.size()-4*this.page);
-        int width = this.width / 2 - 100;
-        int height = this.height / 4 + 8;
+        List<BonfireEntity> bonfires = bonfire.getBonfiresForUse(player);
+        int size = bonfires.size();
 
         for (int i=0; i<size; i++){
-            BonfireEntity bonfire = bonfires.get(i+4*this.page);
-            BlockPos pos = bonfire.getBlockPos();
-            this.renderables.set(i, new Button(
-                    width,
-                    height,
-                    200,
-                    20,
-                    new TextComponent(
-                            bonfire.getName()+
-                                    " (x="+pos.getX()+
-                                    "; y="+pos.getY()+
-                                    "; z="+pos.getZ()+")"),
-                    (button) -> { this.teleport(bonfire); }
-            ));
-            height+=21;
+            if(page*4<=i && i<page*4+4) ((Button)renderables.get(3+i)).visible = true;
+            else ((Button)renderables.get(3+i)).visible = false;
         }
 
-        if (size<4){
-            for (;size<4;size++){
-                ((Button)this.renderables.get(size)).visible = false;
-            }
-        }
-
-        ((Button)this.renderables.get(4)).visible = !(bonfires.size()-4*(this.page+1)<1);
-        ((Button)this.renderables.get(5)).visible = this.page > 0;
+        ((Button)renderables.get(0)).visible = size>4*(page+1);
+        ((Button)renderables.get(1)).visible = page > 0;
     }
 
     public void tick() {
@@ -131,8 +116,15 @@ public class BonfireUseScreen extends Screen {
     }
 
     private void teleport(BonfireEntity bonfire) {
-        BlockPos pos = bonfire.getTpPos();
-        this.player.teleportTo(pos.getX(), pos.getY()+1, pos.getZ());
+        BlockPos tpPos = bonfire.getTpPos();
+        BlockPos bonfirePos = bonfire.getBlockPos();
+
+        this.player.teleportTo(tpPos.getX(), tpPos.getY()+1, tpPos.getZ());
+        player.lookAt(
+                EntityAnchorArgument.Anchor.EYES,
+                new Vec3(bonfirePos.getX()+0.5, bonfirePos.getY()+0.2, bonfirePos.getZ()+0.5)
+        );
+
         this.onClose();
     }
 
