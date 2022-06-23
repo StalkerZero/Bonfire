@@ -6,13 +6,13 @@
     ]
   },
   "criteria": {
-    "diamond": {
+    "gold": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:diamond"
+              "minecraft:gold_ingot"
             ]
           }
         ]
@@ -27,7 +27,7 @@
   },
   "requirements": [
     [
-      "diamond",
+      "gold",
       "has_the_recipe"
     ]
   ]

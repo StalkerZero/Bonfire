@@ -1,12 +1,12 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "dad",
-    " d "
+    "gag",
+    " g "
   ],
   "key": {
-    "d": {
-      "item": "minecraft:diamond"
+    "g": {
+      "tag": "forge:ingots/gold"
     },
     "a": {
       "item": "minecraft:golden_apple"

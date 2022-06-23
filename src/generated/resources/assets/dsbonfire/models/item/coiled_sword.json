@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "dsbonfire:item/coiled_sword"
+    "layer0": "dsbonfire:item/hd_coiled_sword"
   }
 }

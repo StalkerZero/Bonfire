@@ -1,5 +1,8 @@
 package ru.stalkernidus.blocks;
 
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import ru.stalkernidus.entities.BonfireEntity;
@@ -23,6 +26,9 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 import net.minecraft.world.phys.BlockHitResult;
 
+import java.util.List;
+import java.util.Map;
+
 import static com.mojang.realmsclient.util.task.LongRunningTask.setScreen;
 import static ru.stalkernidus.setup.Registration.ESTUS_FLASK;
 
@@ -37,6 +43,10 @@ public class BonfireBlock extends CampfireBlock implements EntityBlock {
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if(!level.isClientSide) {
+            player.clearFire();
+            player.removeEffect(MobEffects.POISON);
+//            List<MobEffect> effects = player.getActiveEffectsMap().keySet().stream().toList();
+//            for(MobEffect e : effects) if(!e.isBeneficial()) player.removeEffect(e);
             Inventory inv = player.getInventory();
             short flasks = 0;
             if (inv.contains(new ItemStack(ESTUS_FLASK.get()))) {

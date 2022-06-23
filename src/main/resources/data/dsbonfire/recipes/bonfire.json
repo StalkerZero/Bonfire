@@ -2,11 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "s",
+    "p",
     "c"
   ],
   "key": {
     "s": {
       "item": "dsbonfire:coiled_sword"
+    },
+    "p": {
+      "item": "minecraft:ender_pearl"
     },
     "c": {
       "item": "minecraft:campfire"
